@@ -57,7 +57,8 @@ class Bar extends \cli\Progress
         $size -= strlen($msg . $timing);
 
         $repeat = floor($_percent * $size);
-        $bar = ($repeat ? str_repeat($this->_bars[0], $repeat) : '') . $this->_bars[1];
+        $repeat = $repeat > 0 ? $repeat : 0;
+        $bar = str_repeat($this->_bars[0], $repeat) . $this->_bars[1];
 
         // substr is needed to trim off the bar cap at 100%
         $bar = substr(str_pad($bar, $size, ' '), 0, $size);
